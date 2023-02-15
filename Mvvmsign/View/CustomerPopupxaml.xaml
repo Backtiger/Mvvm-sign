@@ -1,0 +1,86 @@
+﻿<Window x:Class="Mvvmsign.View.CustomerPopupxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Mvvmsign.View"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="CustomerPopupxaml" Height="350" Width="300">
+    <StackPanel>
+        <TextBlock Text="고객 등록" HorizontalAlignment="Center"
+                       FontSize="18" Margin="0 15 0 15"/>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock Text="이름 : " VerticalAlignment="Center" Margin="40 0 0 0"/>
+            <TextBox Name="txtName"
+                         FontSize="11"
+                         FontWeight="Medium"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="5 5 20 5"
+                         Padding="20 0 0 0"
+                         Width="80"
+                         MaxLength="10"
+                         Text="{Binding Name}"/>
+            <RadioButton GroupName="Sex" Name= "Male" IsChecked="{Binding Sex}" CommandParameter="1">남</RadioButton>
+            <RadioButton GroupName="Sex" Name = "Female" IsChecked="{Binding Sex}" CommandParameter="0" >여</RadioButton>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock Text="주소 : " VerticalAlignment="Center" Margin="40 0 0 0"/>
+            <TextBox Name="txtAddress"
+                         FontSize="11"
+                         FontWeight="Medium"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="5 5 20 5"
+                         Padding="20 0 0 0"
+                         Width="169"
+                         MaxLength="40"
+                         Text="{Binding Address}"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock Text=" 생년월일 : " VerticalAlignment="Center" Margin="30 0 0 0"/>
+            <DatePicker Name="calender"
+                         FontSize="11"
+                         FontWeight="Medium"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="5 5 20 5"
+                         Padding="20 0 0 0"
+                         Width="150" 
+                         SelectedDate="{x:Static sys:DateTime.Now}"
+                         Text="{Binding BirthDay}"
+                         >
+            </DatePicker>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock Text=" 전화번호 : " VerticalAlignment="Center" Margin="30 0 0 0"/>
+            <TextBox Name="txtphone"
+                         FontSize="11"
+                         FontWeight="Medium"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="5 5 20 5"
+                         Padding="20 0 0 0"
+                         Width="150"
+                         MaxLength="12"
+                         Text="{Binding PhoneNumber}"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock Text=" 비고 : " VerticalAlignment="Center" Margin="30 0 0 0"/>
+            <TextBox Name="txtRemark"
+                         FontSize="11"
+                         FontWeight="Medium"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="5 5 20 5"
+                         Padding="20 0 0 0"
+                         Width="175"
+                         MaxLength="50"
+                         Text="{Binding Remark}"/>
+        </StackPanel>
+        <Button Height="30" Width="60" HorizontalAlignment="Right" Margin="0 30 40 0" FontSize="12" Command="{Binding InsertCustomerCommand}" >확인</Button>
+    </StackPanel>
+</Window>

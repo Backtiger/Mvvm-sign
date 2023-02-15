@@ -1,0 +1,91 @@
+﻿<Window x:Class="Mvvmsign.View.UserRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Mvvmsign.View"
+        mc:Ignorable="d"
+        Title="UserRegister" Height="550" Width="600">
+    <Grid>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" 
+                       Margin="0 50 0 20" 
+                       FontSize="25" 
+                       FontWeight="SemiBold" 
+                       Text="회원가입">
+            </TextBlock>
+
+            <StackPanel  VerticalAlignment="Top" 
+                         Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" 
+                           Margin="80 50 0 0" 
+                           FontSize="25"
+                           FontWeight="SemiBold" 
+                           Text="ID :">
+                    
+                </TextBlock>
+                
+                <TextBox Margin="10 20 0 0" 
+                         x:Name="txtID" 
+                         Width="404" 
+                         FontSize="18" 
+                         MaxLength="15" 
+                         materialDesign:HintAssist.Hint="아이디 입력하세요" 
+                         BorderThickness="2" 
+                         BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                         Text="{Binding Userid}"     
+                         />
+            </StackPanel>
+
+            <StackPanel  VerticalAlignment="Top" 
+                         Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" 
+                           Margin="70 50 0 0" 
+                           FontSize="25" 
+                           FontWeight="SemiBold" 
+                           Text="PW :">
+                    
+                </TextBlock>
+                
+                <TextBox Margin="10 20 0 0" 
+                         x:Name="txtPassword" 
+                         Width="400" FontSize="18" 
+                         MaxLength="20" 
+                         materialDesign:HintAssist.Hint="비밀번호를 입력하세요" 
+                         BorderThickness="2" 
+                         BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                         Text="{Binding Userpw}" 
+                         />
+            </StackPanel>
+
+            <StackPanel  
+                VerticalAlignment="Top" 
+                Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" 
+                           Margin="70 50 0 0" 
+                           FontSize="25" 
+                           FontWeight="SemiBold" 
+                           Text="이름 :">                    
+                </TextBlock>
+                <TextBox Margin="10 20 0 0" 
+                         x:Name="txtName" 
+                         Width="390" 
+                         FontSize="18" 
+                         MaxLength="20" 
+                         materialDesign:HintAssist.Hint="이름을 입력하세요" 
+                         BorderThickness="2" 
+                         BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                         Text="{Binding UserName}" 
+                         />
+            </StackPanel>
+            
+            <Button HorizontalAlignment="Right" 
+                    Margin="0 80 50 0" 
+                    Width="80" 
+                    Height="50" 
+                    FontSize="20" 
+                    Command="{Binding RegisterCommand}">등록</Button>
+        </StackPanel>
+    </Grid>
+</Window>
