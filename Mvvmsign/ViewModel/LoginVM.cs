@@ -16,8 +16,10 @@ using System.Windows.Input;
 
 namespace consent2
 {
-    class LoginVM : UserModel ,INotifyPropertyChanged
-    {        
+    class LoginVM :INotifyPropertyChanged
+    {
+        
+
         private ICommand _LoginCommand;
 
         public ICommand LoginCommand
@@ -77,27 +79,37 @@ namespace consent2
                 return _SignUpCommand;
             }
         }
- 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propname)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
+        }
+
         public void ExecuteLogin(object param)
         {
             DalUser dalUser = new DalUser();
             PasswordBox passwordBox = new PasswordBox();
             object closeform = new object();
+            TextBox txtid = null;
 
             foreach (object ob in (object[])param)
             {
                 if (ob is PasswordBox)
                     passwordBox = ob as PasswordBox;
+                else if (ob is TextBox)
+                    txtid = ob as TextBox;
                 else
                     closeform = ob;
             }
 
             var password = passwordBox.Password;
 
-            DataTable dtloginuser = dalUser.Login(Userid, password.ToString());
+            DataTable dtloginuser = dalUser.Login(txtid.Text, password.ToString());
 
             if (dtloginuser.Rows.Count > 0)
             {
+                UserModel.Userid = txtid.Text;
                 MainWindow win = new MainWindow();
                 ExecuteClose(closeform);
                 win.Show();
@@ -115,28 +127,27 @@ namespace consent2
         }
 
         private void InsertUser(object obj)
-        {
+        {            
             DalUser dalUser = new DalUser();
 
             string today =(DateTime.Now.Year +"-"+ DateTime.Now.Month+ "-" + DateTime.Now.Day).ToString();
-            int success = dalUser.InsertUser(Userid, Userpw, UserName, today);
+            int success = dalUser.InsertUser(UserModel.Userid, UserModel.Userpw, UserModel.UserName, today);
 
             if (success==1)
             {
-                UserName = null; OnPropertyChanged("UserName");
-                Userid = null; OnPropertyChanged("Userid");
-                Userpw = null; OnPropertyChanged("Userpw");
+                UserModel.UserName = null; OnPropertyChanged("UserName");
+                UserModel.Userid = null; OnPropertyChanged("Userid");
+                UserModel.Userpw = null; OnPropertyChanged("Userpw");
 
                 System.Windows.Forms.MessageBox.Show("계정이 생성되었습니다.");
             }
-
         }
 
         private bool CanInsertUser(object obj)
         {
             bool flag;
 
-            if (string.IsNullOrEmpty(Userid) || string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Userpw))
+            if (string.IsNullOrEmpty(UserModel.Userid) || string.IsNullOrEmpty(UserModel.UserName) || string.IsNullOrEmpty(UserModel.Userpw))
                 flag = false;
             else
                 flag = true;

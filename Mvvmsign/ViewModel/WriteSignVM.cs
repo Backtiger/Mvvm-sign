@@ -42,36 +42,9 @@ namespace Mvvmsign.ViewModel
         }
         
     
-        private void ExecuteSave(object param)
-        {
-            UIElement inkcanvas = param as UIElement;
 
-            inkcanvas.RenderTransform = new ScaleTransform(1, 1, 0, 0);
-            inkcanvas.Refresh();
 
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)imageWidth, (int)imageHeight, 96d, 96d, PixelFormats.Default);
-
-            renderTargetBitmap.Render(inkcanvas);
-
-            using (Stream stream = new FileStream( CreatePath(), FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
-                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-                jpegBitmapEncoder.Save(stream);
-            }
-        }
-
-        private string CreatePath()
-        {
-            if (!Directory.Exists("C:\\SignChart\\WritedSign"))
-            {
-                Directory.CreateDirectory("C:\\SignChart\\WritedSign");
-            }
-
-            string path = cusNum + "_"+cusName+"-"+chartName;
-
-            return path;
-        }
+  
 
     }
 }

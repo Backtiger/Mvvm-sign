@@ -47,8 +47,7 @@
                          materialDesign:HintAssist.Hint="아이디를 입력하세요" 
                          BorderThickness="2" 
                          BorderBrush="{DynamicResource MaterialDesignDivider}"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Userid}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"                      
                      />
                 <PasswordBox Margin="0 20 0 0" 
                              x:Name="txtPassword" 
@@ -73,6 +72,7 @@
                         <MultiBinding Converter="{StaticResource Converter}">
                             <Binding ElementName="Loginfrom"/>
                             <Binding ElementName="txtPassword"/>
+                            <Binding ElementName="txtUserName"/>
                         </MultiBinding>
                     </Button.CommandParameter>
                 </Button>

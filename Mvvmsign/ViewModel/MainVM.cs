@@ -216,8 +216,9 @@ namespace Mvvmsign.ViewModel
 
         private void ExecuteShowWirte(object param) 
         {
-            
-            WirteSign wirteSign = new WirteSign(SelectedChart.ChartName,SelectedChart.ChartPath ,SelectedCustomer.Number,SelectedCustomer.Name);
+
+            //WirteSign wirteSign = new WirteSign(SelectedChart.ChartName,SelectedChart.ChartPath ,SelectedCustomer.Number,SelectedCustomer.Name);
+            WirteSign wirteSign = new WirteSign(SelectedChart,SelectedCustomer);
             wirteSign.Show();
             Sign sing = new Sign();
            // sing.Show();

@@ -7,22 +7,16 @@ using System.Threading.Tasks;
 
 namespace Mvvmsign.Model
 {
-    internal class UserModel : INotifyPropertyChanged
+    public static class UserModel
     {
-        public string Userid { get; set; }
+        public static string Userid { get; set; }
 
-        public string Userpw { get; set; }
+        public static string Userpw { get; set; }
 
-        public string UserName { get; set; }
+        public static string UserName { get; set; }
 
-        public DateTime Makedate { get; set; }
-        public string Remark { get; set; }
+        public static DateTime Makedate { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propname)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
-        }
     }
 }

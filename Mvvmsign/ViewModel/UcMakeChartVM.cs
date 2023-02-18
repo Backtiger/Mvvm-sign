@@ -30,7 +30,7 @@ namespace Mvvmsign.ViewModel
             }
         }
 
-        ObservableCollection<MakeChartModel> MakeChartList { get; set; } = new ObservableCollection<MakeChartModel>();   
+        public ObservableCollection<MakeChartModel> MakeChartList { get; set; } = new ObservableCollection<MakeChartModel>();   
 
         public UcMakeChartVM()
         {
@@ -95,24 +95,26 @@ namespace Mvvmsign.ViewModel
 
         public void ExecuteSelect() 
         {
-            DataTable dtMakeChart = dalMakeChart.SelectMackeChartList();
+       
 
             MakeChartList = new ObservableCollection<MakeChartModel>();
 
+            DataTable dtMakeChart = dalMakeChart.SelectMackeChartList();
+
             foreach (DataRow dr in dtMakeChart.Rows)
             {
+                Console.WriteLine(dr["MAKE_SEQ"].ToString());
                 MakeChartList.Add(new MakeChartModel
                 {
+                   
                     MakeSeq = dr["MAKE_SEQ"].ToString(),
                     CustoemrSeq = dr["CUSTOMER_SEQ"].ToString(),
                     CustomerName = dr["CUSTOMER_NAME"].ToString(),
                     ChartSeq = dr["CHART_SEQ"].ToString(),
                     ChartName = dr["CHART_NAME"].ToString(),
                     ChartPath = dr["CHART_PATH"].ToString(),
-                    UserId = dr["USER_ID"].ToString(),
-                    UserName = dr["USER_NAME"].ToString(),
-                    MakeDate = Convert.ToDateTime(dr["MAKE_DATE"]),
-                    Remark = dr["REMARK"].ToString()
+                    UserId = dr["USER_ID"].ToString(),               
+                    MakeDate = Convert.ToDateTime(dr["MAKE_DATE"])
                 });
             }
         }
@@ -137,14 +139,16 @@ namespace Mvvmsign.ViewModel
         {
             dalMakeChart.DeleteMakeChart(SelectedMakeChart.MakeSeq);
         }
-        public void CanExecuteDelete(object param)
+        public bool CanExecuteDelete(object param)
         {
-            System.Windows.Forms.MessageBox.Show("Test");
+            if (SelectedMakeChart is null)
+                return false;
+            else
+                return true;
         }
 
         public void ExecuteInsert()
         {
-            System.Windows.Forms.MessageBox.Show("Test");
         }
     }
 }

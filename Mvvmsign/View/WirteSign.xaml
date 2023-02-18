@@ -16,7 +16,7 @@
             <Button Height="30" Width="70" TextBlock.TextAlignment="Left" Name="btnEraser" Content="지우개" Margin="5" Click="Btn_Click"/>            
             <Button Height="30" Width="70" TextBlock.TextAlignment="Left" Name="btnDelete"  Content="삭제" Margin="5" Click="Btn_Click"/>
             <Button Height="30" Width="70" TextBlock.TextAlignment="Left" Name="btnDraw"  Content="펜" Margin="5" Click="Btn_Click"/>
-            <Button Height="30" Width="70" TextBlock.TextAlignment="Left" Name="btnSave" Content="저장" Margin="5" Click="Btn_Click" Command="{Binding test}"/>
+            <Button Height="30" Width="70" TextBlock.TextAlignment="Left" Name="btnSave" Content="저장" Margin="5" Click="Btn_Click" />
         </StackPanel>
         <ScrollViewer x:Name="scrollview" 
                       Width="950"

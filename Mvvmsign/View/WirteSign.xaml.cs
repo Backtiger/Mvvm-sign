@@ -1,7 +1,11 @@
-﻿using Mvvmsign.ViewModel;
+﻿using consent2.Query;
+using Mvvmsign.Model;
+using Mvvmsign.Util;
+using Mvvmsign.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,13 +36,37 @@ namespace Mvvmsign.View
         double imageHeight = 0;
         double imageWidth = 0;
 
-        public WirteSign(string chartName,string path ,string cusnum ,string cusname)
+        //string chartName;
+        //string path;
+        //string cusNum;
+        //string cusName;
+
+        ChartListModel ChartListM;
+        CustomerModel CustomerM;
+
+
+
+        public WirteSign(ChartListModel chartListModel , CustomerModel customerModel)
         {
             InitializeComponent();
-            SetImage(path.Trim());
+            SetImage(chartListModel.ChartPath);
+            this.ChartListM = chartListModel;
+            this.CustomerM = customerModel;       
 
-            this.DataContext = new WriteSignVM(imageHeight, imageHeight, cusnum, cusname, chartName);
         }
+
+        //public WirteSign(string chartname,string path ,string cusnum ,string cusname)
+        //{
+        //    InitializeComponent();
+        //    SetImage(path.Trim());
+
+        //    this.chartName = chartname;
+        //    this.path = path;
+        //    this.cusNum = cusnum;
+        //    this.cusName = cusname;
+
+        //    //this.DataContext = new WriteSignVM(imageHeight, imageHeight, cusnum, cusname, chartName);
+        //}
 
         private void SetImage(string path)
         {
@@ -55,6 +83,47 @@ namespace Mvvmsign.View
             canvas.Height = imageHeight;
             canvas.Width = imageWidth;
         }
+
+        private void save()
+        {
+            DalMakeChart dalMakeChart = new DalMakeChart();
+                       
+            dalMakeChart.InsertMackeChartList(ChartListM, CustomerM);
+            Saveimage();
+        }
+
+        private void Saveimage()
+        {
+            //UIElement inkcanvas = param as UIElement;
+
+            canvas.RenderTransform = new ScaleTransform(1, 1, 0, 0);
+            canvas.Refresh();
+
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)imageWidth, (int)imageHeight, 96d, 96d, PixelFormats.Default);
+
+            renderTargetBitmap.Render(canvas);
+
+            using (Stream stream = new FileStream(CreatePath(), FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
+                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+                jpegBitmapEncoder.Save(stream);
+            }
+        } 
+
+        private string CreatePath()
+        {
+            if (!Directory.Exists("C:\\SignChart\\WritedSign"))
+            {
+                Directory.CreateDirectory("C:\\SignChart\\WritedSign");
+            }
+
+            string path = CustomerM.Number + "_" + CustomerM.Name + "-" + ChartListM.ChartName;
+
+            return path;
+        }
+
+        
 
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
@@ -79,10 +148,6 @@ namespace Mvvmsign.View
 
         }
 
-        private void save()
-        {
-
-        }
 
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {

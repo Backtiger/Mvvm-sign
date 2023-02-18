@@ -14,11 +14,12 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding MakeSeq}" Header="No" Width="100"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding CustomerName}" Header="이름" Width="150"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding ChartName}" Header="양식이름" Width="150"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding MakeDate}" Header="작성일자" Width="150"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="핸드폰번호" Width="150"></GridViewColumn>                        
-                        <GridViewColumn DisplayMemberBinding="{Binding Remark}" Header="비고" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding CustoemrSeq}" Header="고객번호" Width="100"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding CustomerName}" Header="고객이름" Width="100"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding ChartSeq}" Header="양식번호" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding ChartName}" Header="양식명" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding UserId}" Header="작성계정" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding MakeDate}" Header="작성일자" Width="150"></GridViewColumn>                        
                     </GridView>
                 </ListView.View>
             </ListView>

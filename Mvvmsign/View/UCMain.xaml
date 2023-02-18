@@ -143,6 +143,7 @@
             </Border>
             <Button Content="작성"
                     Margin="20"
+                    Name="btnwrite"
                     Command="{Binding WirteCommand}"/>
         </Grid>
 
