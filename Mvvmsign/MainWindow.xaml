@@ -3,40 +3,78 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Mvvmsign"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900">    
-        <Grid>        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="500" Width="900">
+    <Grid>
+        <Border Background="White" 
+                     CornerRadius="50"/>
+        
+        <Border VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                CornerRadius="10,0,100,0"
+                Height="80"
+                Width="850">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        >
+            <Image RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="C:\Users\LEE\source\repos\Mvvmsign\Mvvmsign\Resource\free-icon-signature-992520.png" 
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="50 20 20 0"
+                       Height="50"
+                       Width="40"
+                       />
+                <TextBlock Text="SignMain"
+                           VerticalAlignment="Center"
+                           FontSize="30"
+                           FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </Border>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="228" />
                 <ColumnDefinition Width="622" />
-            </Grid.ColumnDefinitions>            
+            </Grid.ColumnDefinitions>
         </Grid>
 
         <Grid HorizontalAlignment="Left"
               VerticalAlignment="Center">
-            <ItemsControl ItemsSource="{Binding SourceCollection}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Button Content="{Binding MenuName}"
-                                             Tag="{Binding MenuImage}" 
-                                             CommandParameter="{Binding MenuName}"
-                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.MenuCommand}"                                                                                                                                          
-                                             Width="80"
-                                             Height="30"
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding SourceCollection}"
+                          Margin="20 10 10 10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="{Binding MenuName}"
+                                        Tag="{Binding MenuImage}" 
+                                        CommandParameter="{Binding MenuName}"
+                                        Command="{Binding DataContext.MenuCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"                                                                                                                                          
+                                         materialDesign:ButtonAssist.CornerRadius="10" 
+                                        Margin="10 10 10 10"                                        
+                                        Width="100"
+                                        Height="40"
                                     />
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </Grid>
-        
+
         <Grid Grid.Column="1">
             <ContentControl x:Name="Pages"
-                                Content="{Binding SelectedViewModel}" Margin="233,0,0,0" />
+                            Content="{Binding SelectedViewModel}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="150,0,50,0" />
         </Grid>
-      
+
     </Grid>
 </Window>

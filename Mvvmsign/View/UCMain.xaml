@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:Mvvmsign.ViewModel"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="622">
+             d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <Border CornerRadius="20,20,20,20"
-                Background="#323345" 
+                Background="#448AFF" 
                 Margin="10,70,10,10" >
 
             <TextBox Name="SearchCustomer" 
@@ -67,7 +67,7 @@
         <Grid Grid.Column="1" 
               Grid.Row="0" >
             <Border CornerRadius="20,20,20,20" 
-                    Background="#323345" 
+                    Background="#448AFF" 
                     Margin="10,70,10,10" >
                 <TextBox Name="SearchChart" 
                          VerticalAlignment="Center"
@@ -110,7 +110,7 @@
         <Grid Grid.Column="2"
               Grid.Row="1" Margin="0,0,0,46">
             <Border CornerRadius="30 30 30 30"
-                    Background="#323345"
+                    Background="#448AFF"
                     Height="150"
                     VerticalAlignment="Top"
                     Margin="10">                

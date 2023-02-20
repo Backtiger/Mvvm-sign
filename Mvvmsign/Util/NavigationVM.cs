@@ -32,9 +32,7 @@ namespace Mvvmsign.Util
                 new MenuItems { MenuName = "메인화면" },
                 new MenuItems { MenuName = "고객관리"},
                 new MenuItems { MenuName = "양식관리"},
-                new MenuItems { MenuName = "작성목록"},
-                new MenuItems { MenuName = "test"}
-
+                new MenuItems { MenuName = "작성목록"}
 
             };
 
