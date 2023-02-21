@@ -13,11 +13,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace Mvvmsign.View
 {
@@ -151,19 +153,22 @@ namespace Mvvmsign.View
 
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            zoom += zoomSpeed * e.Delta; // Ajust zooming speed (e.Delta = Mouse spin value )
-            if (zoom < zoomMin) { zoom = zoomMin; } // Limit Min Scale
-            if (zoom > zoomMax) { zoom = zoomMax; } // Limit Max Scale
-
-            System.Windows.Point mousePos = e.GetPosition(scrollview);
-
-            if (zoom > 1)
+            if (System.Windows.Forms.Control.ModifierKeys == Keys.Control)
             {
-                canvas.RenderTransform = new ScaleTransform(zoom, zoom, mousePos.X, mousePos.Y); // transform Canvas size from mouse position
-            }
-            else
-            {
-                canvas.RenderTransform = new ScaleTransform(zoom, zoom); // transform Canvas size
+                zoom += zoomSpeed * e.Delta; // Ajust zooming speed (e.Delta = Mouse spin value )
+                if (zoom < zoomMin) { zoom = zoomMin; } // Limit Min Scale
+                if (zoom > zoomMax) { zoom = zoomMax; } // Limit Max Scale
+
+                System.Windows.Point mousePos = e.GetPosition(scrollview);
+
+                if (zoom > 1)
+                {
+                    canvas.RenderTransform = new ScaleTransform(zoom, zoom, mousePos.X, mousePos.Y); // transform Canvas size from mouse position
+                }
+                else
+                {
+                    canvas.RenderTransform = new ScaleTransform(zoom, zoom); // transform Canvas size
+                }
             }
         }
     }
