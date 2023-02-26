@@ -92,6 +92,7 @@ namespace Mvvmsign.View
                        
             dalMakeChart.InsertMackeChartList(ChartListM, CustomerM);
             Saveimage();
+            System.Windows.Forms.MessageBox.Show("저장이 완료되었습니다.");
         }
 
         private void Saveimage()
